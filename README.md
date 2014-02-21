@@ -65,7 +65,7 @@ You can use several options:
 
 * -l, --libs: you can include external javascript libraries so Brython could have access to their functionality. You can pass the url of several several libraries separated by commas.
 
-To see some examples download the notebook available in the repository and run it locally or see it in the nbviewer (not all the examples will run if you choose the second option)
+To see some examples download the notebook available in the repository and run it locally or see it in the [nbviewer](http://nbviewer.ipython.org/github/kikocorreoso/brythonmagic/blob/master/Brython%20usage%20in%20the%20IPython%20notebook.ipynb?create=1) (not all the examples will run if you choose the second option)
 
 Support
 =======
