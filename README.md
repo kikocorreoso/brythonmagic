@@ -5,7 +5,7 @@ Brython magic for the IPython notebook.
 
 The brythonmagic extension has been tested on:
 
-* IPython versions (1, 2, 0, '') and (1, 1, 0, '')
+* IPython versions (2, 0, 0, 'dev'), (1, 2, 0, '') and (1, 1, 0, '')
 
 * Python version 3.3.1
 
@@ -14,28 +14,28 @@ The brythonmagic extension has been tested on:
 Installation
 ============
 
-Brython version used is [2,0,0,'final',2].
-
-To use a working Brython version you should download the following files:
-
-* https://raw.github.com/kikocorreoso/brythonmagic/master/brython/brython.js
-* https://raw.github.com/kikocorreoso/brythonmagic/master/brython/py_VFS.js
-
-to the brython folder.
-
 First, you should create the 'brython' folder in the 'static/custom/' folder located on:
 
     import IPython
     
     IPython.utils.path.locate_profile() # + '/static/custom/brython'
 
-Once the brython javascript files are in the correct place we should install and load the extension:
+Brython files used are a slightly modified version of Brython [2,0,0,'final',2].
+
+So you should download the Brython version available on this repository:
+
+* https://raw.github.com/kikocorreoso/brythonmagic/master/brython/brython.js
+* https://raw.github.com/kikocorreoso/brythonmagic/master/brython/py_VFS.js
+
+to the created brython folder.
+
+When the brython javascript files are in the correct place we should install and load the brythonmagic extension:
 
     %install_ext https://raw.github.com/kikocorreoso/brythonmagic/master/brythonmagic.py
 
     %load_ext brythonmagic
     
-Once all is in the correct place we could just load the brython javascript using the following code:
+Once all is in the correct place we could just load the brython javascript files executing the following code in a code cell:
 
     %%HTML
 
@@ -57,7 +57,7 @@ You can use several options:
 * -p, --print: will show you the generated html code below the results obtained from the brython code.
 
 
-* -o, --output: you can define de name of the `div` container in case you want to 'play' with it in other cell. If you don't define an output the `div` will have and `id` with the following format 'brython-container-[random number between 0 and 999999]'
+* -o, --output: you can define the name of the `div` container in case you want to 'play' with it in other cell. If you don't define an output the `div` will have and `id` with the following format 'brython-container-[random number between 0 and 999999]'
 
 
 * -i, --input: you can pass variables defined in the Python namespace separated by commas. If you pass a python list it will be converted to a brython list, a python tuple will be converted to a brython tuple, a python dict will be converted to a brython dict, a python string will be converted to a brython string.
