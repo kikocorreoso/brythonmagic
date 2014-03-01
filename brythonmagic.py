@@ -180,7 +180,7 @@ In [2]: %%brython -i Z
         js_libs = ""
         if args.libs:
             js_libs += "<!-- third party js libs -->\n"
-            for url in args.libs:
+            for url in ','.join(args.libs).split(','):
                 js_libs += """<script type="text/javascript" src="{}"></script>\n""".format(url)
             js_libs += "<!-- End of 3rd party js libs -->\n"
 
