@@ -29,17 +29,8 @@ To enable the magics below, execute ``%load_ext brythonmagic``.
 # Copyright (C) 2014 Kiko Correoso and the Brython team
 #
 # Distributed under the terms of the BSD License. The full license is in
-# the file COPYING, distributed as part of this software.
+# the file LICENSE, distributed as part of this software.
 #-----------------------------------------------------------------------------
-
-#import tempfile
-#from glob import glob
-#from shutil import rmtree
-#import sys
-
-#import numpy as np
-#import oct2py
-#from xml.dom import minidom
 
 import json
 from random import randint
