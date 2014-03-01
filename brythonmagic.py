@@ -28,23 +28,20 @@ To enable the magics below, execute ``%load_ext brythonmagic``.
 #-----------------------------------------------------------------------------
 # Copyright (C) 2014 Kiko Correoso and the Brython team
 #
-# Distributed under the terms of the BSD License. The full license is in
+# Distributed under the terms of the MIT License. The full license is in
 # the file LICENSE, distributed as part of this software.
 #-----------------------------------------------------------------------------
 
 import json
 from random import randint
 
-#from IPython.core.displaypub import publish_display_data
-from IPython.core.magic import (Magics, magics_class, line_magic,
+from IPython.core.magic import (Magics, magics_class, 
                                 line_cell_magic, needs_local_scope)
 from IPython.testing.skipdoctest import skip_doctest
-from IPython.core.magic_arguments import (
-    argument, magic_arguments, parse_argstring
-)
+from IPython.core.magic_arguments import (argument, magic_arguments, 
+                                          parse_argstring)
 from IPython.utils.py3compat import unicode_to_str
 from IPython.utils.text import dedent
-
 from IPython.display import display, HTML
 
 class BrythonMagicError(Exception):
@@ -186,7 +183,7 @@ In [2]: %%brython -i Z
         options = "{debug:1, py_id:'" + script_id + "'}"
         post_call ="""
 </script>
-<script type="text/javascript">window.onload = brython({0})</script>
+<script type="text/javascript">brython({0});</script>
 <div id="{1}"></div>
 """.format(options, str(params['output']))
 
