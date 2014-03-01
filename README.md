@@ -27,9 +27,9 @@ So you should download the Brython version available on this repository:
 * https://raw.github.com/kikocorreoso/brythonmagic/master/brython/brython.js
 * https://raw.github.com/kikocorreoso/brythonmagic/master/brython/py_VFS.js
 
-to the created brython folder.
+to the brython folder recently created.
 
-When the brython javascript files are in the correct place we should install and load the brythonmagic extension:
+Once the brython javascript files are in the correct place we should install and load the brythonmagic extension:
 
     %install_ext https://raw.github.com/kikocorreoso/brythonmagic/master/brythonmagic.py
 
@@ -65,7 +65,9 @@ You can use several options:
 
 * -l, --libs: you can include external javascript libraries so Brython could have access to their functionality. You can pass the url of several several libraries separated by commas.
 
-To see some examples download the notebook available in the repository and run it locally or see it in the [nbviewer](http://nbviewer.ipython.org/github/kikocorreoso/brythonmagic/blob/master/Brython%20usage%20in%20the%20IPython%20notebook.ipynb?create=1) (not all the examples will run if you choose the second option)
+[WARNING] This options may change as the brythonmagic is in active development. 
+
+To see some examples download the notebook available in the repository and run it locally or see it in the [nbviewer](http://nbviewer.ipython.org/github/kikocorreoso/brythonmagic/blob/master/Brython%20usage%20in%20the%20IPython%20notebook.ipynb?create=1) (you will loose the interactivity if you choose the second option).
 
 Support
 =======
@@ -76,4 +78,13 @@ If you need IPython support, please, ask here: http://mail.scipy.org/mailman/lis
 
 If you find a bug or want to propose a new feature open a new issue here: https://github.com/kikocorreoso/brythonmagic/issues
 
-If you want to improve the code, fork, commit and PR ;.)
+If you want to improve the code, fork, commit and PR ;·D
+
+IDEAS
+=====
+
+Add an option to include *.py scripts? These *.py scripts should be Brython compatible.
+
+Add an option to include a HTML structure so you don't have to create the structure via Brython code?
+
+Add an option to run more than one Brython script in a code cell? Right now, if you run a Brython code cell, the code in other cells will not work anymore (i.e., __BRYTHON__.scope.__main__ will be overwritten).
