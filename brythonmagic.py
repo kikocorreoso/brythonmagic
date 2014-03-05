@@ -168,8 +168,11 @@ In [2]: %%brython -i Z
         js_libs = ""
         if args.libs:
             js_libs += "<!-- third party js libs -->\n"
+            js_libs += """<script type="text/javascript">\n"""
             for url in ','.join(args.libs).split(','):
-                js_libs += """<script type="text/javascript" src="{}"></script>\n""".format(url)
+                #js_libs += """<script type="text/javascript" src="{}"></script>\n""".format(url)
+                js_libs += """$.getScript("{}")\n""".format(url)
+            js_libs += "</script>\n"
             js_libs += "<!-- End of 3rd party js libs -->\n"
 
         pre_call = """
