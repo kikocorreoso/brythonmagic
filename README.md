@@ -15,11 +15,10 @@ Installation
 ============
 
 First, you should create the 'brython' folder in the 'static/custom/' folder located on:
-
-    import IPython
-    
-    IPython.utils.path.locate_profile() # + '/static/custom/brython'
-
+```python
+import IPython
+IPython.utils.path.locate_profile() # + '/static/custom/brython'
+```
 Brython files used are a slightly modified version of Brython [2,0,0,'final',2].
 
 So you should download the Brython version available on this repository:
@@ -30,18 +29,17 @@ So you should download the Brython version available on this repository:
 to the brython folder recently created.
 
 Once the brython javascript files are in the correct place we should install and load the brythonmagic extension:
-
-    %install_ext https://raw.github.com/kikocorreoso/brythonmagic/master/brythonmagic.py
-
-    %load_ext brythonmagic
-    
+```python
+%install_ext https://raw.github.com/kikocorreoso/brythonmagic/master/brythonmagic.py
+%load_ext brythonmagic
+```    
 Once all is in the correct place we could just load the brython javascript files executing the following code in a code cell:
-
-    %%HTML
-
-    <script type="text/javascript" src="http://127.0.0.1:8888/static/custom/brython/brython.js"></script>
-
-    <script type="text/javascript" src="http://127.0.0.1:8888/static/custom/brython/py_VFS.js"></script>
+```python
+%%HTML
+<script type="text/javascript" src="http://127.0.0.1:8888/static/custom/brython/brython.js"></script>
+<script type="text/javascript" src="http://127.0.0.1:8888/static/custom/brython/py_VFS.js"></script>
+```    
+    
 
 Or use the link below to load the brython javascript in all your sessions:
 
@@ -52,6 +50,24 @@ Usage
 
 The brythonmagic provides you a cell magic, `%%brython`, to run brython code and show the results in a html `div` tag below the code cell.
 
+example:
+```python
+%%brython -o zone
+# First of all, the import of some libraries
+from browser import doc, html
+# All the elements will be inserted in the div with the "zone" id
+zone = doc['zone']
+# We create a new div element
+newdiv = html.DIV(Id = "new-div")
+# Now we add some style
+newdiv.style = {"padding": "5px", 
+           "backgroundColor": "#ADD8E6"}
+blink = html.A('brython',href="http://brython.info")
+text = "Brython is really cool, look at "+ blink+ " for more"
+newdiv.append(html.DIV(text,"banner"))
+# zone <= newdiv is equivalent to zone.append(newdiv)
+zone <= newdiv
+```    
 You can use several options:
 
 * -p, --print: will show you the generated html code below the results obtained from the brython code.
