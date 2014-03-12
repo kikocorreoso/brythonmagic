@@ -55,16 +55,25 @@ example:
 %%brython -o zone
 # First of all, the import of some libraries
 from browser import doc, html
+
 # All the elements will be inserted in the div with the "zone" id
 zone = doc['zone']
+
 # We create a new div element
 newdiv = html.DIV(Id = "new-div")
 # Now we add some style
 newdiv.style = {"padding": "5px", 
            "backgroundColor": "#ADD8E6"}
+
+# We create a new link and add the link to a string
 blink = html.A('brython',href="http://brython.info")
 text = "Brython is really cool, look at "+ blink+ " for more"
+
+# Now we add the text to the div with id="new-div"
+# the line below is equivalent to newdiv <= html.DIV(text,"banner")
 newdiv.append(html.DIV(text,"banner"))
+
+# Finally, we add the newdiv to the outer div with id="zone"
 # zone <= newdiv is equivalent to zone.append(newdiv)
 zone <= newdiv
 ```    
