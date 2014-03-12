@@ -78,6 +78,11 @@ shell : IPython shell
              'Only one name is accepted.'
         )
     @argument(
+        '-h', '--html', action='append',
+        help='A string with some html code in order to avoid the creation of the html code from Brython code.'
+             'Only one name is accepted.'
+        )
+    @argument(
         '-p', '--print', action='store_true',
         help='If selected, the generated HTML code will be shown'
              'Arguments are not accepted'
@@ -168,11 +173,20 @@ In [2]: %%brython -i Z
         pre_call += "## End of variables defined in the IPython namespace\n\n"
         
         options = "{debug:1, py_id:'" + script_id + "'}"
+        
+        if args.html:
+            markup = unicode_to_str(args.html)[0]
+            if isinstance(markup, str):
+                markup = self.shell.user_ns[markup]
+            else:
+                markup = ""
         post_call ="""
 </script>
 <script type="text/javascript">brython({0});</script>
-<div id="{1}"></div>
-""".format(options, str(params['container']))
+<div id="{1}">
+{2}
+</div>
+""".format(options, str(params['container']), markup)
 
         code = ''.join((pre_call, code, post_call))
         try:

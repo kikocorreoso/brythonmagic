@@ -104,6 +104,9 @@ You can use several options:
 * -i, --input: you can pass variables defined in the Python namespace separated by commas. If you pass a python list it will be converted to a brython list, a python tuple will be converted to a brython tuple, a python dict will be converted to a brython dict, a python string will be converted to a brython string.
 
 
+* -h, --html: you can pass a string with html markup code. This html code will be inserted inside the div container. In this way you can avoid the generation of HTML markup code via a Brython script so you can separate the layout from the 'action'.
+
+
 [WARNING] This options may change as the brythonmagic is in active development. 
 
 To see some examples download the notebook available in the repository and run it locally or see it in the [nbviewer](http://nbviewer.ipython.org/github/kikocorreoso/brythonmagic/blob/master/Brython%20usage%20in%20the%20IPython%20notebook.ipynb?create=1) (you will loose the interactivity if you choose the second option). Also, you can take a look on the following video: http://youtu.be/adQzjuUX0kw
