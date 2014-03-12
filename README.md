@@ -68,7 +68,7 @@ The brythonmagic provides you a cell magic, `%%brython`, to run brython code and
 
 example:
 ```python
-%%brython -o zone
+%%brython -c zone
 # First of all, the import of some libraries
 from browser import doc, html
 
@@ -98,7 +98,7 @@ You can use several options:
 * -p, --print: will show you the generated html code below the results obtained from the brython code.
 
 
-* -o, --output: you can define the name of the `div` container in case you want to 'play' with it in other cell. If you don't define an output the `div` will have and `id` with the following format 'brython-container-[random number between 0 and 999999]'
+* -c, --container: you can define the name of the `div` container in case you want to 'play' with it in other cell. If you don't define an output the `div` will have and `id` with the following format 'brython-container-[random number between 0 and 999999]'
 
 
 * -i, --input: you can pass variables defined in the Python namespace separated by commas. If you pass a python list it will be converted to a brython list, a python tuple will be converted to a brython tuple, a python dict will be converted to a brython dict, a python string will be converted to a brython string.

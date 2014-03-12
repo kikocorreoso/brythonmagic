@@ -73,7 +73,7 @@ shell : IPython shell
              'Lists, Tuples, Dicts and Strings are converted to the same type in Brython.'
         )
     @argument(
-        '-o', '--output', action='append',
+        '-c', '--container', action='append',
         help='Name of html DIV container to be used to show the Brython output.'
              'Only one name is accepted.'
         )
@@ -102,7 +102,7 @@ if necessary::
 As a cell, this will run a block of Brython code, returning results
 in a DIV if defined::
 
-In [10]: %%brython -o 'output_123'
+In [10]: %%brython -c 'output_123'
 ....: from browser import doc, html
 ....: doc['output_123'] <= html.P('Hello World!!')
 
@@ -153,16 +153,15 @@ In [2]: %%brython -i Z
                     print("Only Python lists, tuples, dicts and strings are accepted")
                 params['input'][input] = val
 
-        if args.output is not None:
+        if args.container is not None:
             try:
-                val = unicode_to_str(args.output)[0]
+                val = unicode_to_str(args.container)[0]
                 if isinstance(val, str):
-                    params['output'] = val
+                    params['container'] = val
             except ValueError:
                 print('Only a string is accepted')
         else:
-            params['output'] = 'brython_container_' + script_id
-        
+            params['container'] = "brython_container_" + str(script_id)
         
         # we pass all the input variables to the brython script
         js_libs = ""
@@ -188,7 +187,7 @@ In [2]: %%brython -i Z
 </script>
 <script type="text/javascript">brython({0});</script>
 <div id="{1}"></div>
-""".format(options, str(params['output']))
+""".format(options, str(params['container']))
 
         code = ''.join((js_libs, pre_call, code, post_call))
         try:
