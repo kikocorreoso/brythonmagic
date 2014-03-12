@@ -14,6 +14,8 @@ The brythonmagic extension has been tested on:
 Installation
 ============
 
+**If you want to use the brythonmagic offline:**
+
 First, you should create the 'brython' folder in the 'static/custom/' folder located on:
 ```python
 import IPython
@@ -44,6 +46,20 @@ Once all is in the correct place we could just load the brython javascript files
 Or use the link below to load the brython javascript in all your sessions:
 
 http://nbviewer.ipython.org/github/ipython/ipython-in-depth/blob/master/notebooks/05%20-%20Notebook%20and%20javascript%20extension.ipynb#custom.js
+
+**If you have an internet conection and want to use the brythonmagic online:**
+
+Just type the following:
+```python
+%install_ext https://raw.github.com/kikocorreoso/brythonmagic/master/brythonmagic.py
+%load_ext brythonmagic
+```
+And load the brython js libs in the notebook:
+```python
+%%HTML
+<script type="text/javascript" src="https://rawgithub.com/kikocorreoso/brythonmagic/master/brython/brython.js"></script>
+<script type="text/javascript" src="https://rawgithub.com/kikocorreoso/brythonmagic/master/brython/py_VFS.js"></script>
+```
 
 Usage
 =====
