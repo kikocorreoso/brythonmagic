@@ -48,7 +48,7 @@ http://nbviewer.ipython.org/github/ipython/ipython-in-depth/blob/master/notebook
 Usage
 =====
 
-The brythonmagic provides you a cell magic, `%%brython`, to run brython code and show the results in a html `div` tag below the code cell.
+The brythonmagic provides you a cell magic, `%%brython`, to run brython code and show the results in a html `div` tag below the code cell. Best way to start with Brython is to check [the Brython docs in their home page](http://brython.info/doc/en/index.html).
 
 example:
 ```python
