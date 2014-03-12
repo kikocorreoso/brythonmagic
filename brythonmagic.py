@@ -78,11 +78,6 @@ shell : IPython shell
              'Only one name is accepted.'
         )
     @argument(
-        '-l', '--libs', action='append',
-        help='url of javascript libraries you want to include in your brython script.'
-             'Urls are separated by comma.'
-        )
-    @argument(
         '-p', '--print', action='store_true',
         help='If selected, the generated HTML code will be shown'
              'Arguments are not accepted'
@@ -164,16 +159,6 @@ In [2]: %%brython -i Z
             params['container'] = "brython_container_" + str(script_id)
         
         # we pass all the input variables to the brython script
-        js_libs = ""
-        if args.libs:
-            js_libs += "<!-- third party js libs -->\n"
-            js_libs += """<script type="text/javascript">\n"""
-            for url in ','.join(args.libs).split(','):
-                #js_libs += """<script type="text/javascript" src="{}"></script>\n""".format(url)
-                js_libs += """$.getScript("{}")\n""".format(url)
-            js_libs += "</script>\n"
-            js_libs += "<!-- End of 3rd party js libs -->\n"
-
         pre_call = """
 <script id="{}" type="text/python">
 ## Variables defined in the IPython namespace
@@ -189,7 +174,7 @@ In [2]: %%brython -i Z
 <div id="{1}"></div>
 """.format(options, str(params['container']))
 
-        code = ''.join((js_libs, pre_call, code, post_call))
+        code = ''.join((pre_call, code, post_call))
         try:
             display(HTML(code))
             if args.print:
