@@ -47,7 +47,7 @@ Or use the link below to load the brython javascript in all your sessions:
 
 http://nbviewer.ipython.org/github/ipython/ipython-in-depth/blob/master/notebooks/05%20-%20Notebook%20and%20javascript%20extension.ipynb#custom.js
 
-**If you have an internet conection and want to use the brythonmagic online:**
+**If you have an internet connection and want to use the brythonmagic online:**
 
 Just type the following:
 ```python
