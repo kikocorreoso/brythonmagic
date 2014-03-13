@@ -14,7 +14,8 @@ The brythonmagic extension has been tested on:
 Installation
 ============
 
-**If you want to use the brythonmagic offline:**
+If you want to use the brythonmagic offline:
+--------------------------------------------
 
 First, you should create the 'brython' folder in the 'static/custom/' folder located on:
 ```python
@@ -47,7 +48,8 @@ Or use the link below to load the brython javascript in all your sessions:
 
 http://nbviewer.ipython.org/github/ipython/ipython-in-depth/blob/master/notebooks/05%20-%20Notebook%20and%20javascript%20extension.ipynb#custom.js
 
-**If you have an internet connection and want to use the brythonmagic online:**
+If you have an internet connection and want to use the brythonmagic online:
+---------------------------------------------------------------------------
 
 Just type the following:
 ```python
@@ -127,6 +129,6 @@ IDEAS
 
 Add an option to include *.py scripts? These *.py scripts should be Brython compatible.
 
-Add an option to include a HTML structure so you don't have to create the structure via Brython code?
+Add an option to include a HTML structure so you don't have to create the structure via Brython code? &#10004;
 
-Add an option to run more than one Brython script in a code cell? Right now, if you run a Brython code cell, the code in other cells will not work anymore (i.e., __BRYTHON__.scope.__main__ will be overwritten).
+Add an option to run more than one Brython script in a code cell? Right now, if you run a Brython code cell, the code in other cells will not work anymore (i.e., \_\_BRYTHON\_\_.scope.\_\_main\_\_ will be overwritten).
