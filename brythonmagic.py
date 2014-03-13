@@ -30,7 +30,15 @@ To enable the magics below, execute ``%load_ext brythonmagic``.
 #
 # Distributed under the terms of the MIT License. The full license is in
 # the file LICENSE, distributed as part of this software.
+
+# Contributors (alphabetical order):
+#   kikocorreoso
+#   Polack Christian (baoboa)
 #-----------------------------------------------------------------------------
+
+import sys
+if sys.version_info < (3,3):
+    raise Exception("Python v3.3 or higher is required. Other versions have not been tested")
 
 import json
 from random import randint
@@ -133,6 +141,9 @@ In [2]: %%brython -i Z
 
         code = ' '.join(args.code) + code
         
+        ########################################################################
+        ## Check if input variables from the Python namespace have to be used ##
+        ########################################################################
         if args.input:
             for input in ','.join(args.input).split(','):
                 input = unicode_to_str(input)
@@ -153,6 +164,17 @@ In [2]: %%brython -i Z
                     print("Only Python lists, tuples, dicts and strings are accepted")
                 params['input'][input] = val
 
+        # we pass all the input variables to the brython script
+        pre_call = """<script id="{}" type="text/python">\n""".format(script_id)
+        if params['input'].keys():
+            pre_call += "## Variables defined in the Python namespace\n"
+            for key in params['input'].keys():
+                pre_call += "{0} = {1}\n".format(key, params['input'][key])
+            pre_call += "## End of variables defined in the IPython namespace\n\n"
+        
+        #######################################
+        ## Check if a container is specified ##
+        #######################################
         if args.container is not None:
             try:
                 val = unicode_to_str(args.container)[0]
@@ -163,32 +185,32 @@ In [2]: %%brython -i Z
         else:
             params['container'] = "brython_container_" + str(script_id)
         
-        # we pass all the input variables to the brython script
-        pre_call = """
-<script id="{}" type="text/python">
-## Variables defined in the IPython namespace
-""".format(script_id)
-        for key in params['input'].keys():
-            pre_call += "{0} = {1}\n".format(key, params['input'][key])
-        pre_call += "## End of variables defined in the IPython namespace\n\n"
-        
         options = "{debug:1, py_id:'" + script_id + "'}"
         
+        ###########################################
+        ## Check if input HTML code is specified ##
+        ###########################################
         if args.html:
             markup = unicode_to_str(args.html)[0]
             if isinstance(markup, str):
                 markup = self.shell.user_ns[markup]
             else:
                 markup = ""
-        post_call ="""
-</script>
-<script type="text/javascript">brython({0});</script>
-<div id="{1}">
-{2}
-</div>
-""".format(options, str(params['container']), markup)
-
+        else:
+            markup = ""
+            
+        post_call = "\n</script>\n"
+        post_call += """<script type="text/javascript">brython({0});</script>\n""".format(options)
+        post_call += """<div id="{0}">{1}</div>""".format(str(params['container']), 
+                                                          markup)
+        ################################
+        ## Create the final HTML code ##
+        ################################
         code = ''.join((pre_call, code, post_call))
+        
+        ############################################
+        ## Display the results in the output area ##
+        ############################################
         try:
             display(HTML(code))
             if args.print:
@@ -198,9 +220,7 @@ In [2]: %%brython -i Z
             print("Please, see your browser javascript console for more details.")
 
 __doc__ = __doc__.format(
-    BRYTHON_DOC = dedent(BrythonMagics.brython.__doc__)
-    )
-
+    BRYTHON_DOC = dedent(BrythonMagics.brython.__doc__))
 
 def load_ipython_extension(ip):
     """Load the extension in IPython."""
