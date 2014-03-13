@@ -32,10 +32,15 @@ So you should download the Brython version available on this repository:
 to the brython folder recently created.
 
 Once the brython javascript files are in the correct place we should install and load the brythonmagic extension:
+
 ```python
 %install_ext https://raw.github.com/kikocorreoso/brythonmagic/master/brythonmagic.py
-%load_ext brythonmagic
 ```    
+
+```python
+%load_ext brythonmagic
+```
+
 Once all is in the correct place we could just load the brython javascript files executing the following code in a code cell:
 ```python
 %%HTML
@@ -52,8 +57,12 @@ If you have an internet connection and want to use the brythonmagic online:
 ---------------------------------------------------------------------------
 
 Just type the following:
+
 ```python
 %install_ext https://raw.github.com/kikocorreoso/brythonmagic/master/brythonmagic.py
+```    
+
+```python
 %load_ext brythonmagic
 ```
 And load the brython js libs in the notebook:
