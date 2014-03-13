@@ -91,6 +91,16 @@ shell : IPython shell
              'Only one name is accepted.'
         )
     @argument(
+        '-s', '--script', action='append',
+        help='Name to be used for the id of the script tag where the brython code cell will be inserted.'
+             'Only one name is accepted.'
+        )
+    @argument(
+        '-S', '--scripts', action='append',
+        help='id of the script tag of other Brython scripts not defined in de actual Brython code cell.'
+             'Several ids are accepted.'
+        )
+    @argument(
         '-p', '--print', action='store_true',
         help='If selected, the generated HTML code will be shown'
              'Arguments are not accepted'
@@ -163,14 +173,6 @@ In [2]: %%brython -i Z
                     print('{} not accepted'.format(input))
                     print("Only Python lists, tuples, dicts and strings are accepted")
                 params['input'][input] = val
-
-        # we pass all the input variables to the brython script
-        pre_call = """<script id="{}" type="text/python">\n""".format(script_id)
-        if params['input'].keys():
-            pre_call += "## Variables defined in the Python namespace\n"
-            for key in params['input'].keys():
-                pre_call += "{0} = {1}\n".format(key, params['input'][key])
-            pre_call += "## End of variables defined in the IPython namespace\n\n"
         
         #######################################
         ## Check if a container is specified ##
@@ -183,9 +185,22 @@ In [2]: %%brython -i Z
             except ValueError:
                 print('Only a string is accepted')
         else:
-            params['container'] = "brython_container_" + str(script_id)
+            params['container'] = "brython_container_" + script_id
         
-        options = "{debug:1, py_id:'" + script_id + "'}"
+        #########################################
+        ## Check the Brython scripts to be run ##
+        #########################################
+        if args.script:
+            script_id = unicode_to_str(args.script)[0]
+        
+        scripts_id = []
+        if args.scripts:
+            for input in ','.join(args.scripts).split(','):
+                scripts_id.append(unicode_to_str(input))
+        scripts_id.append(script_id)
+         
+        scripts_ids = json.dumps(scripts_id)
+        options = "{debug:1, ipy_id: " + scripts_ids + "}"
         
         ###########################################
         ## Check if input HTML code is specified ##
@@ -198,7 +213,17 @@ In [2]: %%brython -i Z
                 markup = ""
         else:
             markup = ""
-            
+        
+        #######################################################
+        ## Now we create the final HTML code to be displayed ##
+        #######################################################
+        pre_call = """<script id="{}" type="text/python">\n""".format(script_id)
+        if params['input'].keys():
+            pre_call += "## Variables defined in the Python namespace\n"
+            for key in params['input'].keys():
+                pre_call += "{0} = {1}\n".format(key, params['input'][key])
+            pre_call += "## End of variables defined in the IPython namespace\n\n"
+
         post_call = "\n</script>\n"
         post_call += """<script type="text/javascript">brython({0});</script>\n""".format(options)
         post_call += """<div id="{0}">{1}</div>""".format(str(params['container']), 
