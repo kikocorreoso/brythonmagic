@@ -140,4 +140,4 @@ Add an option to include *.py scripts? These *.py scripts should be Brython comp
 
 Add an option to include a HTML structure so you don't have to create the structure via Brython code? &#10004;
 
-Add an option to run more than one Brython script in a code cell? Right now, if you run a Brython code cell, the code in other cells will not work anymore (i.e., \_\_BRYTHON\_\_.scope.\_\_main\_\_ will be overwritten).
+Add an option to run more than one Brython script in a code cell? Right now, if you run a Brython code cell, the code in other cells will not work anymore (i.e., \_\_BRYTHON\_\_.scope.\_\_main\_\_ will be overwritten). &#10004; This should be documented!!!!!
