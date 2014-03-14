@@ -18,10 +18,12 @@ If you want to use the brythonmagic offline:
 --------------------------------------------
 
 First, you should create the 'brython' folder in the 'static/custom/' folder located on:
+
 ```python
 import IPython
 IPython.utils.path.locate_profile() # + '/static/custom/brython'
 ```
+
 Brython files used are a slightly modified version of Brython [2,0,0,'final',2].
 
 So you should download the Brython version available on this repository:
@@ -42,13 +44,13 @@ Once the brython javascript files are in the correct place we should install and
 ```
 
 Once all is in the correct place we could just load the brython javascript files executing the following code in a code cell:
+
 ```python
 %%HTML
 <script type="text/javascript" src="http://127.0.0.1:8888/static/custom/brython/brython.js"></script>
 <script type="text/javascript" src="http://127.0.0.1:8888/static/custom/brython/py_VFS.js"></script>
 ```    
     
-
 Or use the link below to load the brython javascript in all your sessions:
 
 http://nbviewer.ipython.org/github/ipython/ipython-in-depth/blob/master/notebooks/05%20-%20Notebook%20and%20javascript%20extension.ipynb#custom.js
@@ -65,7 +67,9 @@ Just type the following:
 ```python
 %load_ext brythonmagic
 ```
+
 And load the brython js libs in the notebook:
+
 ```python
 %%HTML
 <script type="text/javascript" src="https://rawgithub.com/kikocorreoso/brythonmagic/master/brython/brython.js"></script>
@@ -78,6 +82,7 @@ Usage
 The brythonmagic provides you a cell magic, `%%brython`, to run brython code and show the results in a html `div` tag below the code cell. Best way to start with Brython is to check [the Brython docs in their home page](http://brython.info/doc/en/index.html).
 
 example:
+
 ```python
 %%brython -c zone
 # First of all, the import of some libraries
@@ -104,6 +109,7 @@ newdiv.append(html.DIV(text,"banner"))
 # zone <= newdiv is equivalent to zone.append(newdiv)
 zone <= newdiv
 ```    
+
 You can use several options:
 
 * -p, --print: will show you the generated html code below the results obtained from the brython code.
@@ -116,6 +122,12 @@ You can use several options:
 
 
 * -h, --html: you can pass a string with html markup code. This html code will be inserted inside the div container. In this way you can avoid the generation of HTML markup code via a Brython script so you can separate the layout from the 'action'.
+
+
+* -s, --script: Use this option to provide and id to the script defined in the Brython code cell. Also, this value could be used to run the code of this cell in other brython cells.
+
+
+* -S, --scripts: Use this option to run code previously defined in other Brython code cells. The values should be the provided values in the -s/--script option in other Brython code cells.
 
 
 [WARNING] This options may change as the brythonmagic is in active development. 
