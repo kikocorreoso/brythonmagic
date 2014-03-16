@@ -24,7 +24,7 @@ Just type the following:
 %load_ext brythonmagic
 ```
 
-And load the brython js libs in the notebook:
+And load the brython js lib in the notebook:
 
 ```python
 %%HTML
