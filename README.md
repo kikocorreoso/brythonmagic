@@ -14,50 +14,6 @@ The brythonmagic extension has been tested on:
 Installation
 ============
 
-If you want to use the brythonmagic offline:
---------------------------------------------
-
-First, you should create the 'brython' folder in the 'static/custom/' folder located on:
-
-```python
-import IPython
-IPython.utils.path.locate_profile() # + '/static/custom/brython'
-```
-
-Brython files used are a slightly modified version of Brython [2,0,0,'final',2].
-
-So you should download the Brython version available on this repository:
-
-* https://raw.github.com/kikocorreoso/brythonmagic/master/brython/brython.js
-* https://raw.github.com/kikocorreoso/brythonmagic/master/brython/py_VFS.js
-
-to the brython folder recently created.
-
-Once the brython javascript files are in the correct place we should install and load the brythonmagic extension:
-
-```python
-%install_ext https://raw.github.com/kikocorreoso/brythonmagic/master/brythonmagic.py
-```    
-
-```python
-%load_ext brythonmagic
-```
-
-Once all is in the correct place we could just load the brython javascript files executing the following code in a code cell:
-
-```python
-%%HTML
-<script type="text/javascript" src="http://127.0.0.1:8888/static/custom/brython/brython.js"></script>
-<script type="text/javascript" src="http://127.0.0.1:8888/static/custom/brython/py_VFS.js"></script>
-```    
-    
-Or use the link below to load the brython javascript in all your sessions:
-
-http://nbviewer.ipython.org/github/ipython/ipython-in-depth/blob/master/notebooks/05%20-%20Notebook%20and%20javascript%20extension.ipynb#custom.js
-
-If you have an internet connection and want to use the brythonmagic online:
----------------------------------------------------------------------------
-
 Just type the following:
 
 ```python
@@ -72,8 +28,7 @@ And load the brython js libs in the notebook:
 
 ```python
 %%HTML
-<script type="text/javascript" src="https://rawgithub.com/kikocorreoso/brythonmagic/master/brython/brython.js"></script>
-<script type="text/javascript" src="https://rawgithub.com/kikocorreoso/brythonmagic/master/brython/py_VFS.js"></script>
+<script type="text/javascript" src="http://brython.info/src/brython_dist.js"></script>
 ```
 
 Usage
