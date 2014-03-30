@@ -5,7 +5,7 @@ Brython magic for the IPython notebook.
 
 The brythonmagic extension has been tested on:
 
-* IPython versions (2, 0, 0, 'dev'), (1, 2, 0, '') and (1, 1, 0, '')
+* IPython versions (2, 0, 0, 'rc1'), (2, 0, 0, 'dev'), (1, 2, 1, ''), (1, 2, 0, '') and (1, 1, 0, '')
 
 * Python version 3.3.1
 
