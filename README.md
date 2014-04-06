@@ -5,7 +5,7 @@ Brython magic for the IPython notebook.
 
 The brythonmagic extension has been tested on:
 
-* IPython versions (2, 0, 0, 'rc1'), (2, 0, 0, 'dev'), (1, 2, 1, ''), (1, 2, 0, '') and (1, 1, 0, '')
+* IPython versions (2, 0, 0, ''), (1, 2, 1, ''), (1, 2, 0, '') and (1, 1, 0, '')
 
 * Python version 3.3.1
 
@@ -107,4 +107,4 @@ Add an option to include *.py scripts? These *.py scripts should be Brython comp
 
 Add an option to include a HTML structure so you don't have to create the structure via Brython code? &#10004;
 
-Add an option to run more than one Brython script in a code cell? Right now, if you run a Brython code cell, the code in other cells will not work anymore (i.e., \_\_BRYTHON\_\_.scope.\_\_main\_\_ will be overwritten). &#10004; **[This should be documented!!!!!]**
+Add an option to run more than one Brython script in a code cell? Right now, if you run a Brython code cell, the code in other cells will not work anymore (i.e., \_\_BRYTHON\_\_.vars.\_\_main\_\_ will be overwritten). &#10004; 
