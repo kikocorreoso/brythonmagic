@@ -87,7 +87,7 @@ You can use several options:
 
 [WARNING] This options may change as the brythonmagic is in active development. 
 
-To see some examples download the notebook available in the repository and run it locally or see it in the [nbviewer](http://nbviewer.ipython.org/github/kikocorreoso/brythonmagic/blob/master/Brython%20usage%20in%20the%20IPython%20notebook.ipynb?create=1) (you will loose the interactivity if you choose the second option). Also, you can take a look on the following video: http://youtu.be/adQzjuUX0kw
+To see some examples download the notebook available in the repository and run it locally or see it in the [nbviewer](http://nbviewer.ipython.org/urls/raw.githubusercontent.com/kikocorreoso/brythonmagic/master/notebooks/Brython%20usage%20in%20the%20IPython%20notebook.ipynb?create=1) (you will loose the interactivity if you choose the second option). Also, you can take a look on the following video: http://youtu.be/adQzjuUX0kw
 
 Support
 =======
