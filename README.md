@@ -9,7 +9,7 @@ The brythonmagic extension has been tested on:
 
 * Python version 3.3.1
 
-* Brython version [2,0,0,'final',2]
+* Brython versions (2,1,0), (2,0,0)
 
 Installation
 ============
