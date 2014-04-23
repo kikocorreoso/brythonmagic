@@ -200,7 +200,7 @@ In [2]: %%brython -i Z
         scripts_id.append(script_id)
          
         scripts_ids = json.dumps(scripts_id)
-        options = "{debug:1, ipy_id: " + scripts_ids + "}"
+        options = "{debug:1, static_stdlib_import: false, ipy_id: " + scripts_ids + "}"
         
         ###########################################
         ## Check if input HTML code is specified ##
