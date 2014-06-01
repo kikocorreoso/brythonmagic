@@ -103,8 +103,8 @@ If you want to improve the code, fork, commit and PR ;·D
 IDEAS
 =====
 
-Add an option to include *.py scripts? These *.py scripts should be Brython compatible.
+Add an option to include *.py scripts? These *.py scripts should be Brython compatible. &#10004; (this could be made via imports with the py script in the same folder as the notebook)
 
-Add an option to include a HTML structure so you don't have to create the structure via Brython code? &#10004;
+Add an option to include a HTML structure so you don't have to create the structure via Brython code? &#10004; (did it)
 
-Add an option to run more than one Brython script in a code cell? Right now, if you run a Brython code cell, the code in other cells will not work anymore (i.e., \_\_BRYTHON\_\_.vars.\_\_main\_\_ will be overwritten). &#10004; 
+Add an option to run more than one Brython script in a code cell? Right now, if you run a Brython code cell, the code in other cells will not work anymore (i.e., \_\_BRYTHON\_\_.vars.\_\_main\_\_ will be overwritten). &#10004;  (did it)
