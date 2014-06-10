@@ -112,3 +112,11 @@ Add an option to include *.py scripts? These *.py scripts should be Brython comp
 Add an option to include a HTML structure so you don't have to create the structure via Brython code? &#10004; (did it)
 
 Add an option to run more than one Brython script in a code cell? Right now, if you run a Brython code cell, the code in other cells will not work anymore (i.e., \_\_BRYTHON\_\_.vars.\_\_main\_\_ will be overwritten). &#10004;  (did it)
+
+CONTRIBUTORS
+============
+
+* Kikocorreoso ([pybonacci blog](http://pybonacci.wordpress.com), [twitter](https://twitter.com/pybonacci))
+* baoboa ([github](https://github.com/baoboa)) for some insightful comments and code.
+* Roger Veciana ([github](https://github.com/rveciana), [twitter](https://twitter.com/rveciana)) for the review of the Openlayers tutorial.
+* Pierre Quentel and all the Brython committers for their work and their invaluable suggestions and help.
