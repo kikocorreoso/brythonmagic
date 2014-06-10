@@ -1,4 +1,4 @@
-brythonmagic
+Brythonmagic
 ============
 
 Brython magic for the IPython notebook.
@@ -14,10 +14,9 @@ The brythonmagic extension has been tested on:
 Installation
 ============
 
-You should have IPython already installed in order to use Brythonmagic. In case you don't have IPython installed you
-can follow the instructions on the [IPython official page](http://ipython.org/install.html).
+You should have IPython (notebook) already installed in order to use Brythonmagic. In case you don't have IPython installed you can follow the instructions on the [IPython official page](http://ipython.org/install.html).
 
-Just type the following:
+To install brythonmagic itself just type the following:
 
 ```python
 %install_ext https://raw.github.com/kikocorreoso/brythonmagic/master/brythonmagic.py
@@ -33,6 +32,8 @@ And load the brython js lib in the notebook:
 %%HTML
 <script type="text/javascript" src="http://brython.info/src/brython_dist.js"></script>
 ```
+
+If you have any problem with the installation, please, open an [issue](https://github.com/kikocorreoso/brythonmagic/issues).
 
 Usage
 =====
