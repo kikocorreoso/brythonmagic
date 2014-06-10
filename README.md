@@ -14,6 +14,9 @@ The brythonmagic extension has been tested on:
 Installation
 ============
 
+You should have IPython already installed in order to use Brythonmagic. In case you don't have IPython installed you
+can follow the instructions on the [IPython official page](http://ipython.org/install.html).
+
 Just type the following:
 
 ```python
