@@ -328,7 +328,7 @@ Creation and embedding of snippets in gist and jsfiddle is easy using
         ## the final result from jsfiddle.net                     ##
         ############################################################
         if args.embedfiddle:
-            code += """<br><iframe src="{}" style="height:400px; width: 100%;"/>""".format(jsf_url)
+            code += """<br><iframe src="{}" style="height:400px; width: 100%;"></iframe>""".format(jsf_url)
         
         ############################################
         ## Display the results in the output area ##
