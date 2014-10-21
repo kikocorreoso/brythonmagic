@@ -118,7 +118,7 @@ shell : IPython shell
     @argument(
         '-i', '--input', action='append', nargs = "*",
         help='Names of input variables to be pushed to be available by the Brython script'
-             'Multiple variables are accepted and can be passed, separated by commas with no whitespace.'
+             'Multiple variables are accepted and can be passed separated by whitespaces.'
              'Lists, Tuples, Dicts and Strings are converted to the same type in Brython.'
         )
     @argument(
@@ -142,7 +142,7 @@ brython code cell will be inserted.'
         '-S', '--scripts', action='append', nargs = "*",
         help='id of the script tag of other Brython scripts not \
 defined in de actual Brython code cell.'
-             'Several ids are accepted.'
+             'Several ids separated by whitespaces are accepted.'
         )
     @argument(
         '-p', '--print', action='store_true',
