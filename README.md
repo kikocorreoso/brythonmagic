@@ -1,12 +1,12 @@
 Brythonmagic
 ============
 
+Brython magic for the IPython notebook.
+
 The brythonmagic provides you a cell magic, `%%brython`, to run brython code and show the results in a html `div` tag below the code cell. Best way to start with Brython is to check [the Brython docs in their home page](http://brython.info/doc/en/index.html).
 
 Tested on
 =========
-
-Brython magic for the IPython notebook.
 
 The brythonmagic extension has been tested on:
 
