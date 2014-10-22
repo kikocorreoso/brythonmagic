@@ -117,7 +117,7 @@ If you need IPython support, please, ask here: http://mail.scipy.org/mailman/lis
 
 If you find a bug or want to propose a new feature open a new issue here: https://github.com/kikocorreoso/brythonmagic/issues
 
-If you want to improve the code, fork, commit and PR ;·D
+If you want to improve the code, fork, commit and send a PR ;·D
 
 IDEAS
 =====
