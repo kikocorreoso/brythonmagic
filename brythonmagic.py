@@ -9,17 +9,17 @@ Magics for interacting with JS and the DOM via brython.
 .. note::
 
 The ``brython`` javascript scripts need to be installed separately and
-can be obtained from https://bitbucket.org/olemis/brython/overview
+can be obtained from https://github.com/brython-dev/brython
 
 You only need brython.js and py_VFS.js or brython_dist.js to located in
-[IPYTHON_DIR]/static/custom/brython
+a place that could be easily loaded in the notebook
 
 Usage
 =====
 
 To enable the magics below, execute ``%load_ext brythonmagic``.
 
-``%brython``
+``%%brython``
 
 {BRYTHON_DOC}
 
@@ -31,7 +31,7 @@ To enable the magics below, execute ``%load_ext brythonmagic``.
 # Distributed under the terms of the MIT License. The full license is in
 # the file LICENSE, distributed as part of this software.
 #
-# Contributors (alphabetical order):
+# Contributors:
 #   kikocorreoso
 #   Polack Christian (baoboa)
 #-----------------------------------------------------------------------------
@@ -58,6 +58,7 @@ from IPython.core.magic_arguments import (argument, magic_arguments,
 from IPython.utils.py3compat import unicode_to_str
 from IPython.utils.text import dedent
 from IPython.display import display, HTML
+
 
 def create_gist_fiddle(input):
     gdescr = """Gist created automatically using \
@@ -96,6 +97,7 @@ normalize_css: no"""
 class BrythonMagicError(Exception):
     pass
 
+
 @magics_class
 class BrythonMagics(Magics):
     """
@@ -103,14 +105,7 @@ A set of magics useful for interactive work with the DOM API and
 javascript using Brython.
 
 """
-
     def __init__(self, shell):
-        """
-Parameters
-----------
-shell : IPython shell
-
-"""
         super(BrythonMagics, self).__init__(shell)
 
     @skip_doctest
@@ -184,7 +179,8 @@ In [1]: %%brython -c 'output_123'
 
 [You will see <div id="output_123"><p>Hello World!!</p></div> as output]
 
-Objects can be passed back from IPython to Brython via the -i flag in line::
+Objects can be passed back from IPython to Brython via the -i flag in 
+line::
 
 In [1]: Z = [1, 4, 5, 10]
 
@@ -233,9 +229,7 @@ Creation and embedding of snippets in gist and jsfiddle is easy using
 
         code = ' '.join(args.code) + code
 
-        ########################################################################
-        ## Check if input variables from the Python namespace have to be used ##
-        ########################################################################
+        # Check if input from the Python namespace have to be used
         if args.input:
             for input in args.input[0]:
                 input = unicode_to_str(input)
@@ -256,9 +250,7 @@ Creation and embedding of snippets in gist and jsfiddle is easy using
                     print("Only Python lists, tuples, dicts and strings are accepted")
                 params['input'][input] = val
 
-        #######################################
-        ## Check if a container is specified ##
-        #######################################
+        # Check if a container is specified
         if args.container is not None:
             try:
                 if len(args.container[0]) > 1:
@@ -271,9 +263,7 @@ Creation and embedding of snippets in gist and jsfiddle is easy using
         else:
             params['container'] = "brython_container_" + script_id
 
-        #########################################
-        ## Check the Brython scripts to be run ##
-        #########################################
+        # Check the Brython scripts to be run
         if args.script:
             if len(args.script[0]) > 1:
                 warnings.warn("\nOnly one script name accepted (see -s, --script)", UserWarning)
@@ -288,9 +278,7 @@ Creation and embedding of snippets in gist and jsfiddle is easy using
         scripts_ids = json.dumps(scripts_id)
         options = "{debug:1, static_stdlib_import: false, ipy_id: " + scripts_ids + "}"
 
-        ###########################################
-        ## Check if input HTML code is specified ##
-        ###########################################
+        # Check if input HTML code is specified
         if args.html:
             if len(args.html[0]) > 1:
                 warnings.warn("\nOnly one html string code accepted (see -h, --html)", UserWarning)
@@ -302,9 +290,7 @@ Creation and embedding of snippets in gist and jsfiddle is easy using
         else:
             markup = ""
 
-        #######################################################
-        ## Now we create the final HTML code to be displayed ##
-        #######################################################
+        # Now we create the final HTML code to be displayed
         pre_call = """  <script id="{}" type="text/python">\n""".format(script_id)
         if params['input'].keys():
             pre_call += "## Variables defined in the Python namespace\n"
@@ -319,15 +305,11 @@ Creation and embedding of snippets in gist and jsfiddle is easy using
             code_tmp = ''.join((pre_call, code, post_call))
         post_call += """  <script type="text/javascript">brython({0});</script>\n""".format(options)
 
-        ################################
-        ## Create the final HTML code ##
-        ################################
+        # Create the final HTML code
         code_print = ''.join((pre_call, code, post_call))
         code = code_print
 
-        ###########################################################
-        ## If fiddle is selected then create a gist and a fiddle ##
-        ###########################################################
+        # If fiddle is selected then create a gist and a fiddle
         if args.fiddle or args.embedfiddle:
             gist_url, jsf_url = create_gist_fiddle(code_tmp)
             gist_html = """<br><a href="{}" target="_blank">gist link</a>\n"""
@@ -335,16 +317,12 @@ Creation and embedding of snippets in gist and jsfiddle is easy using
             jsf_html = """<br><a href="{}" target="_blank">jsfiddle link</a>\n"""
             code += jsf_html.format(jsf_url)
 
-        ############################################################
-        ## If embedfiddle is selected then create an iframe with  ##
-        ## the final result from jsfiddle.net                     ##
-        ############################################################
+        # If embedfiddle is selected then create an iframe with  ##
+        # the final result from jsfiddle.net
         if args.embedfiddle:
             code += """<br><iframe src="{}" style="height:400px; width: 100%;"></iframe>""".format(jsf_url)
 
-        ############################################
-        ## Display the results in the output area ##
-        ############################################
+        # Display the results in the output area
         try:
             display(HTML(code))
             if args.print:
