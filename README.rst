@@ -55,6 +55,19 @@ And, finally, load the brython js lib in the notebook:
 If you have any problem with the installation, please, open an
 `issue <https://github.com/kikocorreoso/brythonmagic/issues>`__.
 
+WARNING
+=======
+
+In order to load javascript libraries in a safety way you should try to
+use https instead of http when possible (read more
+`here <http://mail.scipy.org/pipermail/ipython-dev/2014-July/014572.html>`__).
+If you don't trust the source and/or the source cannot be loaded using
+https then you could download the javascript library and load it from a
+local location.
+
+Brythonmagic doesn't load any javascript library and the user should
+take care about the security and should use trusted sources.
+
 Usage
 =====
 
@@ -141,8 +154,8 @@ You can use several options:
    and the fiddle and an iframe will be created showing the fiddle on
    `jsfiddle.net <http://jsfiddle.net>`__.
 
-[WARNING] This options may change as the brythonmagic depending the
-development of Brython and/or IPython/Jupyter.
+`WARNING <#warning>`__ This options may change as the brythonmagic
+depending the development of Brython and/or IPython/Jupyter.
 
 To see some examples download the notebooks available in the repository
 and run it locally or see it in the

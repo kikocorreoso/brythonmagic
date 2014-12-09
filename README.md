@@ -55,6 +55,19 @@ And, finally, load the brython js lib in the notebook:
 If you have any problem with the installation, please, open an 
 [issue](https://github.com/kikocorreoso/brythonmagic/issues).
 
+WARNING
+=======
+
+In order to load javascript libraries in a safety way you should try to
+use https instead of http when possible (read more 
+[here](http://mail.scipy.org/pipermail/ipython-dev/2014-July/014572.html)). 
+If you don't trust the source and/or the source cannot be loaded using 
+https then you could download the javascript library and load it from a 
+local location.
+
+Brythonmagic doesn't load any javascript library and the user should
+take care about the security and should use trusted sources.
+
 Usage
 =====
 
