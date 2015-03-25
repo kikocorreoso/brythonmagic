@@ -9,7 +9,7 @@ cell. Best way to start with Brython is to check `the Brython docs in
 their home page <http://brython.info/doc/en/index.html>`__.
 
 Tested on
-=========
+---------
 
 The brythonmagic extension has been tested on:
 
@@ -20,7 +20,7 @@ The brythonmagic extension has been tested on:
 -  Brython versions >= (2,0,0) and <= (3,0,0)
 
 Installation
-============
+------------
 
 You should have IPython (notebook) already installed in order to use
 Brythonmagic. In case you don't have IPython installed you can follow
@@ -56,7 +56,7 @@ If you have any problem with the installation, please, open an
 `issue <https://github.com/kikocorreoso/brythonmagic/issues>`__.
 
 WARNING
-=======
+-------
 
 In order to load javascript libraries in a safety way you should try to
 use https instead of http when possible (read more
@@ -69,7 +69,7 @@ Brythonmagic doesn't load any javascript library and the user should
 take care about the security and should use trusted sources.
 
 Usage
-=====
+-----
 
 example:
 
@@ -165,7 +165,7 @@ Also, you can take a look on the following video:
 http://youtu.be/adQzjuUX0kw
 
 Example notebooks
-=================
+-----------------
 
 -  `General usage of
    Brythonmagic <http://nbviewer.ipython.org/github/kikocorreoso/brythonmagic/blob/master/notebooks/Brython%20usage%20in%20the%20IPython%20notebook.ipynb>`__.
@@ -177,7 +177,7 @@ Example notebooks
    tutorial <http://nbviewer.ipython.org/github/kikocorreoso/brythonmagic/blob/master/notebooks/Highcharts%20(python)%20tutorial.ipynb>`__
 
 Support
-=======
+-------
 
 If you need Brython support, please, ask here:
 https://groups.google.com/forum/?fromgroups=#!forum/brython
@@ -189,36 +189,3 @@ If you find a bug or want to propose a new feature open a new issue
 here: https://github.com/kikocorreoso/brythonmagic/issues
 
 If you want to improve the code, fork, commit and send a PR ;·D
-
-IDEAS
-=====
-
-Add an option to include *.py scripts? These *.py scripts should be
-Brython compatible. ✔ (this could be made via imports with the py script
-in the same folder as the notebook)
-
-Add an option to include a HTML structure so you don't have to create
-the structure via Brython code? ✔ (did it)
-
-Add an option to run more than one Brython script in a code cell? Right
-now, if you run a Brython code cell, the code in other cells will not
-work anymore (i.e., \_\_BRYTHON\_\_.vars.\_\_main\_\_ will be
-overwritten). ✔ (did it)
-
-Make it python 2.7 compatible. ✔ (did it)
-
-Create a setup.py to make it available via pip. ✔ (did it)
-
-CONTRIBUTORS
-============
-
--  Kikocorreoso (`pybonacci blog <http://pybonacci.wordpress.com>`__,
-   `twitter <https://twitter.com/pybonacci>`__)
--  baoboa (`github <https://github.com/baoboa>`__) for some insightful
-   comments and code.
--  Roger Veciana (`github <https://github.com/rveciana>`__,
-   `twitter <https://twitter.com/rveciana>`__) for the review of the
-   Openlayers tutorial.
--  Pierre Quentel and all the Brython committers for their work and
-   their invaluable suggestions and help.
-
