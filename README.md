@@ -17,7 +17,7 @@ The brythonmagic extension has been tested on:
 
 * Python version >= 3.3 and == 2.7
 
-* Brython versions >= (2,0,0) and <= (3,0,0)
+* Brython versions >= (2,0,0) and >= (3,0,0)
 
 Installation
 ============
