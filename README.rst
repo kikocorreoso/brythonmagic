@@ -93,11 +93,9 @@ example:
     text = "Brython is really cool, look at "+ blink + " for more"
 
     # Now we add the text to the div with id="new-div"
-    # the line below is equivalent to newdiv <= html.DIV(text)
-    newdiv.append(html.DIV(text))
+    newdiv <= html.DIV(text)
 
     # Finally, we add the newdiv to the outer div with id="zone"
-    # zone <= newdiv is equivalent to zone.append(newdiv)
     zone <= newdiv
 
 You can use several options:
