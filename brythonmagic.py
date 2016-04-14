@@ -26,7 +26,7 @@ To enable the magics below, execute ``%load_ext brythonmagic``.
 """
 
 #-----------------------------------------------------------------------------
-# Copyright (C) 2014 Kiko Correoso and the Brython team
+# Copyright (C) 2014-2016 Kiko Correoso and the Brython team
 #
 # Distributed under the terms of the MIT License. The full license is in
 # the file LICENSE, distributed as part of this software.
@@ -39,28 +39,71 @@ To enable the magics below, execute ``%load_ext brythonmagic``.
 from __future__ import print_function, division
 import json
 from random import randint
-import urllib
 import warnings
 warnings.simplefilter("always")
+warnings.filterwarnings('default', 
+                        category=DeprecationWarning, 
+                        module='.*/brythonmagic/.*')
 import sys
 if sys.version_info.major == 2 and sys.version_info.minor == 7:
     from urllib2 import urlopen
 elif sys.version_info.major == 3 and sys.version_info.minor >= 3:
     from urllib.request import urlopen
 else:
-    warnings.warn("This extension has not been tested on this Python version", UserWarning)
+    warnings.warn(
+        "This extension has not been tested on this Python version", 
+        UserWarning
+    )
     
-from IPython.core.magic import (Magics, magics_class,
-                                line_cell_magic, needs_local_scope)
+from IPython.core.magic import Magics, magics_class,line_cell_magic
 from IPython.testing.skipdoctest import skip_doctest
 from IPython.core.magic_arguments import (argument, magic_arguments,
                                           parse_argstring)
 from IPython.utils.py3compat import unicode_to_str
 from IPython.utils.text import dedent
-from IPython.display import display, HTML
+from IPython.display import display, HTML, Javascript
 
+__version__ = "0.2.0"
 
-def create_gist_fiddle(input):
+def load_js_lib(url):
+    """Load a javascript file using requirejs.
+    
+    url : str
+        string representing an url to a javascript file
+    """
+
+    js_code = """
+    require(
+        [
+            "%s"
+        ], 
+        function() {
+            console.log("Loaded js code from %s!");
+        }
+    );    
+    """ % (url, url)
+
+    display(Javascript(js_code))
+
+def load_brython_stable():
+    """Load the latest version of brython_dist.js 
+    (brython.js + available stdlib)."""
+
+    load_js_lib("http://brython.info/src/brython_dist.js")
+
+def load_brython_dev():
+    """Load the development version of brython_dist.js 
+    (brython.js + available stdlib)."""    
+
+    load_js_lib("https://cdn.rawgit.com/brython-dev/brython/master/www/src/brython_dist.js")
+
+def _create_gist_fiddle(input):
+    """Internal function to create a fiddle on jsfiddle.com from the code cell.
+    
+    It uploads the code from the notebook code cell to an anonymous github gist
+    that will be used to create the final fiddle on jsfiddle.
+    """
+    
     gdescr = """Gist created automatically using \
 [brythonmagic](https://github.com/kikocorreoso/brythonmagic) by an \
 user of an IPython notebook"""
@@ -100,11 +143,10 @@ class BrythonMagicError(Exception):
 
 @magics_class
 class BrythonMagics(Magics):
+    """A set of magics useful for interactive work with the DOM API and
+    javascript using Brython.
     """
-A set of magics useful for interactive work with the DOM API and
-javascript using Brython.
 
-"""
     def __init__(self, shell):
         super(BrythonMagics, self).__init__(shell)
 
@@ -112,108 +154,98 @@ javascript using Brython.
     @magic_arguments()
     @argument(
         '-i', '--input', action='append', nargs = "*",
-        help='Names of input variables to be pushed to be available by the Brython script'
-             'Multiple variables are accepted and can be passed separated by whitespaces.'
-             'Lists, Tuples, Dicts and Strings are converted to the same type in Brython.'
+        help = 'Names of input variables to be pushed to be available by the Brython script'
+               'Multiple variables are accepted and can be passed separated by whitespaces.'
+               'Lists, Tuples, Dicts and Strings are converted to the same type in Brython.'
         )
     @argument(
         '-c', '--container', action='append', nargs = "*",
-        help='Name of html DIV container to be used to show the Brython output.'
-             'Only one name is accepted.'
+        help = 'Name of html DIV container to be used to show the Brython output.'
+               'Only one name is accepted.'
         )
     @argument(
         '-h', '--html', action='append', nargs = "*",
-        help='A string with some html code in order to avoid the \
-creation of the html code from Brython code.'
-             'Only one name is accepted.'
+        help = 'A string with some html code in order to avoid the creation of the html code from Brython code.'
+               'Only one name is accepted.'
         )
     @argument(
         '-s', '--script', action='append', nargs = "*",
-        help='Name to be used for the id of the script tag where the \
-brython code cell will be inserted.'
-             'Only one name is accepted.'
+        help = 'Name to be used for the id of the script tag where the brython code cell will be inserted.'
+               'Only one name is accepted.'
         )
     @argument(
         '-S', '--scripts', action='append', nargs = "*",
-        help='id of the script tag of other Brython scripts not \
-defined in de actual Brython code cell.'
-             'Several ids separated by whitespaces are accepted.'
+        help = 'id of the script tag of other Brython scripts not defined in de actual Brython code cell.'
+               'Several ids separated by whitespaces are accepted.'
         )
     @argument(
         '-p', '--print', action='store_true',
-        help='If selected, the generated HTML code will be shown'
-             'Arguments are not accepted'
+        help = 'If selected, the generated HTML code will be shown'
+               'Arguments are not accepted'
         )
     @argument(
         '-f', '--fiddle', action='store_true',
-        help='If selected, the generated HTML will be uploaded \
-anonymously to gist.github.com and then create a jsfiddle example \
-from the gist'
-             'Arguments are not accepted'
+        help = 'If selected, the generated HTML will be uploaded anonymously to gist.github.com and then create a jsfiddle example from the gist'
+               'Arguments are not accepted'
         )
     @argument(
         '-e', '--embedfiddle', action='store_true',
-        help='If selected, the generated HTML will be uploaded \
-anonymously to gist.github.com and then create a jsfiddle example \
-from the gist and embed the final result in an iframe in the notebook'
-             'Arguments are not accepted'
+        help = 'If selected, the generated HTML will be uploaded anonymously to gist.github.com and then create a jsfiddle example from the gist and embed the final result in an iframe in the notebook'
+               'Arguments are not accepted'
         )
 
-    #@needs_local_scope
     @argument(
         'code',
         nargs='*',
         )
     @line_cell_magic
-    def brython(self, line, cell=None, local_ns=None):
+    def brython(self, line, cell = None, local_ns = None):
+        '''Execute code in Brython, and show the results in a DIV container
+        if necessary::
+
+        As a cell, this will run a block of Brython code, returning results
+        in a DIV if defined::
+
+        In [1]: %%brython -c 'output_123'
+        ....: from browser import document, html
+        ....: document['output_123'] <= html.P('Hello World!!')
+
+        [You will see <div id="output_123"><p>Hello World!!</p></div> as output]
+
+        Objects can be passed back from IPython to Brython via the -i flag in 
+        line::
+
+        In [1]: Z = [1, 4, 5, 10]
+
+        In [2]: %%brython -i Z
+        ....: print(Z)
+
+        [You will see the list printed in the browser console]
+
+        You can print the final html code to be shown in case you want to share
+        it with someone
+
+        In [1]: %%brython -c 'output_123' -p
+        ....: from browser import document, html
+        ....: document['output_123'] <= html.P('Hello World!!')
+
+        [You will see the complete HTML code shown in the output of the notebook]
+
+        You can pass a HTML structure and it will be used by the brython magic
+
+        In [1]: html_code = """<div id=my_container"></div>"""
+
+        In [2]: %%brython -h html_code
+        ....: from browser import document
+        ....: document['my_container'].text = "Hello World!"
+
+        [You will see <div id="my_container">Hello World!!</div> as output]
+
+        You could reuse code snippets from other cells using -s and -S options
+
+        Creation and embedding of snippets in gist and jsfiddle is easy using
+        -f or -e options
         '''
-Execute code in Brython, and show the results in a DIV container
-if necessary::
-
-As a cell, this will run a block of Brython code, returning results
-in a DIV if defined::
-
-In [1]: %%brython -c 'output_123'
-....: from browser import document, html
-....: document['output_123'] <= html.P('Hello World!!')
-
-[You will see <div id="output_123"><p>Hello World!!</p></div> as output]
-
-Objects can be passed back from IPython to Brython via the -i flag in 
-line::
-
-In [1]: Z = [1, 4, 5, 10]
-
-In [2]: %%brython -i Z
-....: print(Z)
-
-[You will see the list printed in the browser console]
-
-You can print the final html code to be shown in case you want to share
-it with someone
-
-In [1]: %%brython -c 'output_123' -p
-....: from browser import document, html
-....: document['output_123'] <= html.P('Hello World!!')
-
-[You will see the complete HTML code shown in the output of the notebook]
-
-You can pass a HTML structure and it will be used by the brython magic
-
-In [1]: html_code = """<div id=my_container"></div>"""
-
-In [2]: %%brython -h html_code
-....: from browser import document
-....: document['my_container'].text = "Hello World!"
-
-[You will see <div id="my_container">Hello World!!</div> as output]
-
-You could reuse code snippets from other cells using -s and -S options
-
-Creation and embedding of snippets in gist and jsfiddle is easy using
--f or -e options
-
-'''
         args = parse_argstring(self.brython, line)
 
         params = {'input': {}}
@@ -311,7 +343,7 @@ Creation and embedding of snippets in gist and jsfiddle is easy using
 
         # If fiddle is selected then create a gist and a fiddle
         if args.fiddle or args.embedfiddle:
-            gist_url, jsf_url = create_gist_fiddle(code_tmp)
+            gist_url, jsf_url = _create_gist_fiddle(code_tmp)
             gist_html = """<br><a href="{}" target="_blank">gist link</a>\n"""
             code += gist_html.format(gist_url)
             jsf_html = """<br><a href="{}" target="_blank">jsfiddle link</a>\n"""
@@ -330,6 +362,7 @@ Creation and embedding of snippets in gist and jsfiddle is easy using
         except:
             print("Something went wrong.")
             print("Please, see your browser javascript console for more details.")
+        print(code)
 
 __doc__ = __doc__.format(
     BRYTHON_DOC = dedent(BrythonMagics.brython.__doc__))
