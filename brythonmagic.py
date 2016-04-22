@@ -362,7 +362,6 @@ class BrythonMagics(Magics):
         except:
             print("Something went wrong.")
             print("Please, see your browser javascript console for more details.")
-        print(code)
 
 __doc__ = __doc__.format(
     BRYTHON_DOC = dedent(BrythonMagics.brython.__doc__))
