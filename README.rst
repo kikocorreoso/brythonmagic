@@ -1,7 +1,7 @@
 Brythonmagic
 ============
 
-Brython magic for the IPython notebook.
+Brython magic for the Jupyter notebook.
 
 The brythonmagic provides you a cell magic, ``%%brython``, to run
 brython code and show the results in a html ``div`` tag below the code
@@ -13,7 +13,7 @@ Tested on
 
 The brythonmagic extension has been tested on:
 
--  IPython versions >= (1, 1, 0, '')
+-  Jupyter versions >= (4, 0, 0, '')
 
 -  Python version >= 3.3 and == 2.7
 
@@ -22,18 +22,18 @@ The brythonmagic extension has been tested on:
 Installation
 ------------
 
-You should have IPython (notebook) already installed in order to use
-Brythonmagic. In case you don't have IPython installed you can follow
-the instructions on the `IPython official
-page <http://ipython.org/install.html>`__.
+You should have Jupyter (notebook) already installed in order to use
+Brythonmagic. In case you don't have Jupyter installed you can follow
+the instructions on the `Jupyter official
+page <http://jupyter.readthedocs.org/en/latest/index.html>`__.
 
 To install brythonmagic itself just type the following:
 
 .. code:: python
 
-    %install_ext https://raw.github.com/kikocorreoso/brythonmagic/master/brythonmagic.py
+    pip install brythonmagic
 
-or:
+or download this repo and on the brythonmagic downloaded folder type:
 
 .. code:: python
 
@@ -45,12 +45,21 @@ Then, load the extension:
 
     %load_ext brythonmagic
 
-And, finally, load the brython js lib in the notebook:
+And, finally, load the stable brython js lib in the notebook using the 
+following code:
 
 .. code:: python
 
-    %%HTML
-    <script type="text/javascript" src="http://brython.info/src/brython_dist.js"></script>
+    from brythonmagic import load_brython_stable
+    load_brython_stable()
+
+In case you want to use the development brython js lib in the notebook 
+use the following code:
+
+.. code:: python
+
+    from brythonmagic import load_brython_dev
+    load_brython_dev()
 
 If you have any problem with the installation, please, open an
 `issue <https://github.com/kikocorreoso/brythonmagic/issues>`__.
@@ -67,6 +76,13 @@ local location.
 
 Brythonmagic doesn't load any javascript library and the user should
 take care about the security and should use trusted sources.
+
+You can load third party javascript libraries using the following code:
+
+.. code:: python
+
+    from brythonmagic import load_js_lib
+    load_js_lib("https://url/to/your/lib.js")
 
 Usage
 -----
@@ -153,12 +169,12 @@ You can use several options:
    `jsfiddle.net <http://jsfiddle.net>`__.
 
 `WARNING <#warning>`__ This options may change as the brythonmagic
-depending the development of Brython and/or IPython/Jupyter.
+depending the development of Brython and/or Jupyter.
 
 To see some examples download the notebooks available in the repository
 and run it locally or see it in the
-`nbviewer <http://nbviewer.ipython.org/urls/raw.githubusercontent.com/kikocorreoso/brythonmagic/master/notebooks/Brython%20usage%20in%20the%20IPython%20notebook.ipynb?create=1>`__
-(you will loose the interactivity if you choose the second option).
+`nbviewer <http://nbviewer.jupyter.org/urls/raw.githubusercontent.com/kikocorreoso/brythonmagic/master/notebooks/Brython%20usage%20in%20the%20IPython%20notebook.ipynb?create=1>`__
+(you will lose the interactivity if you choose the second option).
 Also, you can take a look on the following video:
 http://youtu.be/adQzjuUX0kw
 
@@ -166,13 +182,13 @@ Example notebooks
 -----------------
 
 -  `General usage of
-   Brythonmagic <http://nbviewer.ipython.org/github/kikocorreoso/brythonmagic/blob/master/notebooks/Brython%20usage%20in%20the%20IPython%20notebook.ipynb>`__.
+   Brythonmagic <http://nbviewer.jupyter.org/github/kikocorreoso/brythonmagic/blob/master/notebooks/Brython%20usage%20in%20the%20IPython%20notebook.ipynb>`__.
 
 -  `An Openlayers
-   tutorial <http://nbviewer.ipython.org/github/kikocorreoso/brythonmagic/blob/master/notebooks/OpenLayers%20(python)%20tutorial.ipynb>`__.
+   tutorial <http://nbviewer.jupyter.org/github/kikocorreoso/brythonmagic/blob/master/notebooks/OpenLayers%20(python)%20tutorial.ipynb>`__.
 
 -  `A Highcharts
-   tutorial <http://nbviewer.ipython.org/github/kikocorreoso/brythonmagic/blob/master/notebooks/Highcharts%20(python)%20tutorial.ipynb>`__
+   tutorial <http://nbviewer.jupyter.org/github/kikocorreoso/brythonmagic/blob/master/notebooks/Highcharts%20(python)%20tutorial.ipynb>`__
 
 Support
 -------
@@ -180,7 +196,7 @@ Support
 If you need Brython support, please, ask here:
 https://groups.google.com/forum/?fromgroups=#!forum/brython
 
-If you need IPython support, please, ask here:
+If you need Jupyter support, please, ask here:
 http://mail.scipy.org/mailman/listinfo/ipython-dev
 
 If you find a bug or want to propose a new feature open a new issue

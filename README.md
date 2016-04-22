@@ -1,7 +1,7 @@
 Brythonmagic
 ============
 
-Brython magic for the IPython notebook.
+Brython magic for the Jupyter notebook.
 
 The brythonmagic provides you a cell magic, `%%brython`, to run brython 
 code and show the results in a html `div` tag below the code cell. Best 
@@ -22,18 +22,18 @@ The brythonmagic extension has been tested on:
 Installation
 ============
 
-You should have IPython (notebook) already installed in order to use 
-Brythonmagic. In case you don't have IPython installed you can follow 
-the instructions on the [IPython official 
-page](http://ipython.org/install.html).
+You should have Jupyter (notebook) already installed in order to use 
+Brythonmagic. In case you don't have Jupyter installed you can follow 
+the instructions on the [Jupyter official 
+page](http://jupyter.readthedocs.org/en/latest/index.html).
 
 To install brythonmagic itself just type the following:
 
 ```python
-%install_ext https://raw.github.com/kikocorreoso/brythonmagic/master/brythonmagic.py
+pip install brythonmagic
 ```    
 
-or:
+or download this repo and on the brythonmagic downloaded folder type:
 
 ```python
 python setup.py install
@@ -45,11 +45,20 @@ Then, load the extension:
 %load_ext brythonmagic
 ```
 
-And, finally, load the brython js lib in the notebook:
+And, finally, load the stable brython js lib in the notebook using the 
+following code:
 
 ```python
-%%HTML
-<script type="text/javascript" src="http://brython.info/src/brython_dist.js"></script>
+from brythonmagic import load_brython_stable
+load_brython_stable()
+```
+
+In case you want to use the development brython js lib in the notebook 
+use the following code:
+
+```python
+from brythonmagic import load_brython_dev
+load_brython_dev()
 ```
 
 If you have any problem with the installation, please, open an 
@@ -67,6 +76,13 @@ local location.
 
 Brythonmagic doesn't load any javascript library and the user should
 take care about the security and should use trusted sources.
+
+You can load third party javascript libraries using the following code:
+
+```python
+from brythonmagic import load_js_lib
+load_js_lib("https://url/to/your/lib.js")
+```
 
 Usage
 =====
@@ -156,11 +172,11 @@ and the fiddle and an iframe will be created showing the fiddle on
 [jsfiddle.net](http://jsfiddle.net).
 
 [WARNING] This options may change as the brythonmagic depending the 
-development of Brython and/or IPython/Jupyter. 
+development of Brython and/or Jupyter. 
 
 To see some examples download the notebooks available in the repository 
 and run it locally or see it in the 
-[nbviewer](http://nbviewer.ipython.org/urls/raw.githubusercontent.com/kikocorreoso/brythonmagic/master/notebooks/Brython%20usage%20in%20the%20IPython%20notebook.ipynb?create=1) 
+[nbviewer](http://nbviewer.jupyter.org/urls/raw.githubusercontent.com/kikocorreoso/brythonmagic/master/notebooks/Brython%20usage%20in%20the%20IPython%20notebook.ipynb?create=1) 
 (you will loose the interactivity if you choose the second option). 
 Also, you can take a look on the following video: 
 http://youtu.be/adQzjuUX0kw
@@ -168,11 +184,11 @@ http://youtu.be/adQzjuUX0kw
 Example notebooks
 =================
 
-* [General usage of Brythonmagic](http://nbviewer.ipython.org/github/kikocorreoso/brythonmagic/blob/master/notebooks/Brython%20usage%20in%20the%20IPython%20notebook.ipynb).
+* [General usage of Brythonmagic](http://nbviewer.jupyter.org/github/kikocorreoso/brythonmagic/blob/master/notebooks/Brython%20usage%20in%20the%20IPython%20notebook.ipynb).
 
-* [An Openlayers tutorial](http://nbviewer.ipython.org/github/kikocorreoso/brythonmagic/blob/master/notebooks/OpenLayers%20(python)%20tutorial.ipynb).
+* [An Openlayers tutorial](http://nbviewer.jupyter.org/github/kikocorreoso/brythonmagic/blob/master/notebooks/OpenLayers%20(python)%20tutorial.ipynb).
 
-* [A Highcharts tutorial](http://nbviewer.ipython.org/github/kikocorreoso/brythonmagic/blob/master/notebooks/Highcharts%20(python)%20tutorial.ipynb)
+* [A Highcharts tutorial](http://nbviewer.jupyter.org/github/kikocorreoso/brythonmagic/blob/master/notebooks/Highcharts%20(python)%20tutorial.ipynb)
 
 Support
 =======
@@ -200,8 +216,7 @@ the structure via Brython code? &#10004; (did it)
 
 Add an option to run more than one Brython script in a code cell? Right 
 now, if you run a Brython code cell, the code in other cells will not 
-work anymore (i.e., \_\_BRYTHON\_\_.vars.\_\_main\_\_ will be 
-overwritten). &#10004;  (did it)
+work anymore. &#10004;  (did it)
 
 Make it python 2.7 compatible. &#10004;  (did it)
 
