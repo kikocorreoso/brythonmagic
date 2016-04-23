@@ -13,11 +13,11 @@ Tested on
 
 The brythonmagic extension has been tested on:
 
--  Jupyter versions >= (4, 0, 0, '')
+-  Jupyter versions >= 1.0.0
 
 -  Python version >= 3.3 and == 2.7
 
--  Brython versions >= (2,0,0) and <= (3,0,0)
+-  Brython versions >= 2.0.0 and >= 3.0.0
 
 Installation
 ------------
