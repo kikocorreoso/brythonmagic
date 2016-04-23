@@ -12,12 +12,12 @@ with io.open(path.join(here, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
 
 install_requires = [
-    'jupyter>=4.0',
+    'jupyter>=1.0.0',
 ]
 
 setup(
     name='brythonmagic',
-    version='0.2.0',
+    version='0.2.1',
     description='Magics to use brython in Jupyter notebook.',
     long_description=long_description,
     url='https://github.com/kikocorreoso/brythonmagic',

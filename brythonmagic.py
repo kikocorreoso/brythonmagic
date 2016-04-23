@@ -63,7 +63,7 @@ from IPython.utils.py3compat import unicode_to_str
 from IPython.utils.text import dedent
 from IPython.display import display, HTML, Javascript
 
-__version__ = "0.2.0"
+__version__ = "0.2.1"
 
 def load_js_lib(url):
     """Load a javascript file using requirejs.
