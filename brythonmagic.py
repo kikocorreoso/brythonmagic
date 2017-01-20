@@ -105,8 +105,8 @@ def _create_gist_fiddle(input):
     """
     
     gdescr = """Gist created automatically using \
-[brythonmagic](https://github.com/kikocorreoso/brythonmagic) by an \
-user of an IPython notebook"""
+https://github.com/kikocorreoso/brythonmagic by a \
+user of a Jupyter notebook"""
 
     code = """<body onload="brython(2)">
 {}
