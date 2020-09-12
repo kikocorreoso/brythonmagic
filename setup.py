@@ -12,12 +12,12 @@ with io.open(path.join(here, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
 
 install_requires = [
-    'jupyter>=1.0.0',
+    'notebook>=5.0.0',
 ]
 
 setup(
     name='brythonmagic',
-    version='0.2.1',
+    version='0.3.0dev',
     description='Magics to use brython in Jupyter notebook.',
     long_description=long_description,
     url='https://github.com/kikocorreoso/brythonmagic',
@@ -33,16 +33,13 @@ setup(
     classifiers=[
         'Topic :: Text Processing :: Markup :: HTML',
         'License :: OSI Approved :: MIT License',
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.3',
-        'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
     ],
 
     # What does your project relate to?
-    keywords='brython ipython jupyter notebook javascript',
+    keywords='brython jupyter notebook javascript browser',
 
     py_modules=['brythonmagic'],
     install_requires=install_requires,
