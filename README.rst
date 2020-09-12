@@ -11,13 +11,13 @@ their home page <http://brython.info/doc/en/index.html>`__.
 Tested on
 ---------
 
-The brythonmagic extension has been tested on:
+The master branch of brythonmagic extension has been tested on:
 
--  Jupyter versions >= 1.0.0
+- Jupyter notebook >= 6.1.4
 
--  Python version >= 3.3 and == 2.7
+- Python version >= 3.6
 
--  Brython versions >= 2.0.0 and >= 3.0.0
+- Brython versions <= 3.6.x
 
 Installation
 ------------
@@ -27,17 +27,17 @@ Brythonmagic. In case you don't have Jupyter installed you can follow
 the instructions on the `Jupyter official
 page <http://jupyter.readthedocs.org/en/latest/index.html>`__.
 
-To install brythonmagic itself just type the following:
-
-.. code:: python
-
-    pip install brythonmagic
-
-or download this repo and on the brythonmagic downloaded folder type:
+Method 1) - Download this repo and on the brythonmagic downloaded folder type:
 
 .. code:: python
 
     python setup.py install
+
+Method 2) - Use pip (you will need to install git):
+
+.. code:: python
+
+    python -m pip install git+https://github.com/kikocorreoso/brythonmagic.git
 
 Then, load the extension:
 
@@ -45,21 +45,13 @@ Then, load the extension:
 
     %load_ext brythonmagic
 
-And, finally, load the stable brython js lib in the notebook using the 
+And, finally, load a stable brython js lib in the notebook using the 
 following code:
 
 .. code:: python
 
     from brythonmagic import load_brython_stable
     load_brython_stable()
-
-In case you want to use the development brython js lib in the notebook 
-use the following code:
-
-.. code:: python
-
-    from brythonmagic import load_brython_dev
-    load_brython_dev()
 
 If you have any problem with the installation, please, open an
 `issue <https://github.com/kikocorreoso/brythonmagic/issues>`__.
@@ -149,24 +141,6 @@ You can use several options:
    other Brython code cells. The values should be the provided values in
    the -s/--script option in other Brython code cells.
 
--  -f, --fiddle: With this option, the code in the cell will be
-   automatically uploaded to
-   `gist.github.com/ <https://gist.github.com/>`__ as an anonymous gist
-   with several files in it. This files will be used to create an
-   anonymous 'fiddle' on `jsfiddle.net <http://jsfiddle.net>`__.
-   Finally, some links will be printed in the output linking to the gist
-   and the fiddle. See an example here
-   (https://gist.github.com/anonymous/b664e8b4617afc09db6c and
-   http://jsfiddle.net/gh/gist/library/pure/b664e8b4617afc09db6c/)
-
--  -e, --embedfiddle: With this option, the code in the cell will be
-   automatically uploaded to
-   `gist.github.com/ <https://gist.github.com/>`__ as an anonymous gist
-   with several files in it. This files will be used to create an
-   anonymous 'fiddle' on `jsfiddle.net <http://jsfiddle.net>`__.
-   Finally, some links will be printed in the output linking to the gist
-   and the fiddle and an iframe will be created showing the fiddle on
-   `jsfiddle.net <http://jsfiddle.net>`__.
 
 `WARNING <#warning>`__ This options may change as the brythonmagic
 depending the development of Brython and/or Jupyter.
@@ -178,7 +152,7 @@ and run it locally or see it in the
 Also, you can take a look on the following video:
 http://youtu.be/adQzjuUX0kw
 
-Example notebooks
+Example notebooks (some options will not work due to changes in APIs)
 -----------------
 
 -  `General usage of
